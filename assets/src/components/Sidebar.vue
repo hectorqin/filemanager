@@ -15,6 +15,11 @@
         <i class="material-icons">note_add</i>
         <span>{{ $t('sidebar.newFile') }}</span>
       </button>
+
+      <button @click="$store.commit('showHover', 'AriaNG')" class="action" aria-label="AriaNG" title="AriaNG">
+        <i class="material-icons">note_add</i>
+        <span>AriaNG</span>
+      </button>
     </div>
 
     <div v-if="staticGen.length > 0">

@@ -13,6 +13,7 @@
     <schedule v-else-if="show === 'schedule'"></schedule>
     <new-archetype v-else-if="show === 'new-archetype'"></new-archetype>
     <share v-else-if="show === 'share'"></share>
+    <aria-ng v-else-if="show === 'AriaNG'"></aria-ng>
     <div v-show="showOverlay" @click="resetPrompts" class="overlay"></div>
   </div>
 </template>
@@ -31,6 +32,7 @@ import NewArchetype from './NewArchetype'
 import Replace from './Replace'
 import Schedule from './Schedule'
 import Share from './Share'
+import AriaNg from './AriaNg'
 import { mapState } from 'vuex'
 import buttons from '@/utils/buttons'
 import * as api from '@/utils/api'
@@ -50,7 +52,8 @@ export default {
     NewFile,
     NewDir,
     Help,
-    Replace
+    Replace,
+    AriaNg
   },
   data: function () {
     return {
