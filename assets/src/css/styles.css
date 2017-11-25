@@ -228,13 +228,14 @@
 @import './mobile.css';
 
 .card.floating.aria-card{
-  max-width: 80vw;
-  max-height: 80vh;
+  max-width: 90vw;
+  max-height: 85vh;
+  margin: 0;
 }
 .aria-card .card-content{
   padding: 0.25em 1em;
 }
 .aria-ng-iframe{
-  height: calc(80vh - 50px);
-  width: 80vw;
+  height: calc(85vh - 50px);
+  width: 100%;
 }

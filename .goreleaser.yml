@@ -2,17 +2,17 @@ build:
   main: cmd/filemanager/main.go
   binary: filemanager
   goos:
-    - darwin
+    # - darwin
     - linux
-    - windows
-    - freebsd
-    - netbsd
-    - openbsd
+    # - windows
+    # - freebsd
+    # - netbsd
+    # - openbsd
   goarch:
     - amd64
-    - 386
-    - arm
-    - arm64
+    # - 386
+    # - arm
+    # - arm64
   ignore:
     - goos: openbsd
       goarch: arm

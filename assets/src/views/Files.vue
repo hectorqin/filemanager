@@ -1,13 +1,13 @@
 <template>
   <div>
     <div id="breadcrumbs">
-      <router-link to="/files/" :aria-label="$t('files.home')" :title="$t('files.home')">
+      <router-link to="/files/" :aria-label="$t('files.home')" :title="$t('files.home')" @click.native="needReload('/files/')">
         <i class="material-icons">home</i>
       </router-link>
 
       <span v-for="link in breadcrumbs" :key="link.name">
         <span class="chevron"><i class="material-icons">keyboard_arrow_right</i></span>
-        <router-link :to="link.url">{{ link.name }}</router-link>
+        <router-link :to="link.url" @click.native="needReload(link.url)">{{ link.name }}</router-link>
       </span>
     </div>
     <div v-if="error">
@@ -127,6 +127,9 @@ export default {
   },
   methods: {
     ...mapMutations([ 'setLoading' ]),
+    needReload (url) {
+      if (url === this.$route.path) this.fetchData()
+    },
     fetchData () {
       // Reset view information.
       this.$store.commit('setReload', false)
