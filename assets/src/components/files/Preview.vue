@@ -4,7 +4,12 @@
       <button @click="back" class="action" :title="$t('files.closePreview')" :aria-label="$t('files.closePreview')" id="close">
         <i class="material-icons">close</i>
       </button>
-
+      <button class="action" @click="req.type='video'" aria-label="Force play as video" title="Force play as video">
+        <i class="material-icons">play_arrow</i>
+      </button>
+      <button class="action" @click="req.type='audio'" aria-label="Force play as video" title="Force play as video">
+        <i class="material-icons">play_arrow</i>
+      </button>
       <rename-button v-if="allowEdit()"></rename-button>
       <delete-button v-if="allowEdit()"></delete-button>
       <download-button></download-button>
