@@ -15,6 +15,7 @@
         <p><strong>{{ $t('prompts.numberFiles') }}:</strong> {{ req.numFiles }}</p>
         <p><strong>{{ $t('prompts.numberDirs') }}:</strong> {{ req.numDirs }}</p>
       </template>
+      <p><strong>Download Link:</strong> <code><a @click="getDownloadUrl($event)">{{ $t('prompts.show') }}</a></code></p>
 
       <template v-if="!dir()">
         <p><strong>MD5:</strong> <code><a @click="checksum($event, 'md5')">{{ $t('prompts.show') }}</a></code></p>
@@ -47,6 +48,18 @@ export default {
     ...mapGetters(['selectedCount'])
   },
   methods: {
+    getDownloadUrl: function (event) {
+      if (this.selectedCount === 1 && !this.req.items[this.selected[0]].isDir) {
+        event.target.innerHTML = api.getDownloadUrl(null, this.req.items[this.selected[0]].url)
+      } else {
+        let files = []
+
+        for (let i of this.selected) {
+          files.push(this.req.items[i].url)
+        }
+        event.target.innerHTML = api.getDownloadUrl('targz', ...files)
+      }
+    },
     humanSize: function () {
       // If there are no files selected or this is not a listing
       // show the human file size of the current request.

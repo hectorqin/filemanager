@@ -1,4 +1,5 @@
 import store from '@/store'
+import cookie from './cookie'
 
 const ssl = (window.location.protocol === 'https:')
 
@@ -196,6 +197,30 @@ export function search (url, search, onmessage, onclose) {
   conn.onopen = () => conn.send(search)
   conn.onmessage = onmessage
   conn.onclose = onclose
+}
+
+export function getDownloadUrl (format, ...files) {
+  let url = `${store.state.baseURL}/api/download`
+
+  if (files.length === 1) {
+    url += removePrefix(files[0]) + '?'
+  } else {
+    let arg = ''
+
+    for (let file of files) {
+      arg += removePrefix(file) + ','
+    }
+
+    arg = arg.substring(0, arg.length - 1)
+    arg = encodeURIComponent(arg)
+    url += `/?files=${arg}&`
+  }
+
+  if (format !== null) {
+    url += `&format=${format}`
+  }
+
+  return window.location.origin + url + '&auth=' + cookie('auth')
 }
 
 export function download (format, ...files) {

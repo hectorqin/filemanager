@@ -158,6 +158,12 @@ func (e extractor) ExtractToken(r *http.Request) (string, error) {
 		return token, nil
 	}
 
+	// support auth in query params
+	auth := r.URL.Query().Get("auth")
+	if auth != "true" {
+		return auth, nil
+	}
+
 	cookie, err := r.Cookie("auth")
 	if err != nil {
 		return "", request.ErrNoTokenInRequest

@@ -17,8 +17,13 @@
       </button>
 
       <button @click="$store.commit('showHover', 'AriaNG')" class="action" aria-label="AriaNG" title="AriaNG">
-        <i class="material-icons">note_add</i>
+        <i class="material-icons">pages</i>
         <span>AriaNG</span>
+      </button>
+
+      <button @click="$store.commit('showHover', 'ttyd')" class="action" aria-label="ttyd" title="ttyd">
+        <i class="material-icons">pages</i>
+        <span>ttyd</span>
       </button>
     </div>
 
