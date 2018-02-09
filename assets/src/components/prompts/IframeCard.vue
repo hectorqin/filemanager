@@ -33,6 +33,7 @@ export default {
     if (url) {
       this.inputUrl = url
       this.iframeUrl = url
+      this.submit()
     }
   },
   methods: {

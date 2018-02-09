@@ -15,9 +15,10 @@
         <p><strong>{{ $t('prompts.numberFiles') }}:</strong> {{ req.numFiles }}</p>
         <p><strong>{{ $t('prompts.numberDirs') }}:</strong> {{ req.numDirs }}</p>
       </template>
-      <p><strong>Download Link:</strong> <code><a @click="getDownloadUrl($event)">{{ $t('prompts.show') }}</a></code></p>
+      <p><strong>Download Link:</strong> <code><a @click="getDownloadUrl($event, false)">{{ $t('prompts.show') }}</a></code></p>
 
       <template v-if="!dir()">
+        <p><strong>Preview Link:</strong> <code><a @click="getDownloadUrl($event, true)">{{ $t('prompts.show') }}</a></code></p>
         <p><strong>MD5:</strong> <code><a @click="checksum($event, 'md5')">{{ $t('prompts.show') }}</a></code></p>
         <p><strong>SHA1:</strong> <code><a @click="checksum($event, 'sha1')">{{ $t('prompts.show') }}</a></code></p>
         <p><strong>SHA256:</strong> <code><a @click="checksum($event, 'sha256')">{{ $t('prompts.show') }}</a></code></p>
@@ -48,9 +49,9 @@ export default {
     ...mapGetters(['selectedCount'])
   },
   methods: {
-    getDownloadUrl: function (event) {
+    getDownloadUrl: function (event, preview) {
       if (this.selectedCount === 1 && !this.req.items[this.selected[0]].isDir) {
-        event.target.innerHTML = api.getDownloadUrl(null, this.req.items[this.selected[0]].url)
+        event.target.innerHTML = api.getDownloadUrl(null, this.req.items[this.selected[0]].url) + (preview ? '&inline=true' : '')
       } else {
         let files = []
 
